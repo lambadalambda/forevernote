@@ -16,6 +16,19 @@ few seconds later.
 
 Everything runs on hardware you control. Nothing is sent anywhere.
 
+![The three-pane view: notebooks and tags, the note list, and a note open for editing](docs/images/screenshot.png)
+
+## Try it without an export
+
+```sh
+npm install
+npm run demo                              # writes data/demo.db with invented notes
+FOREVERNOTE_DB=data/demo.db npm run dev   # http://localhost:5173
+```
+
+The demo includes an attached invoice whose text has already been extracted, so
+searching for `warranty` finds a document by its contents rather than its name.
+
 ## Status
 
 Works, and is in daily use by its author. The server code is well covered by tests;
@@ -103,6 +116,11 @@ already started editing.
 **+ Attach** inside a note adds a file to an existing note instead, extracting its text
 but leaving the title and tags alone.
 
+**Reading what was extracted.** A note with attachments gets a Text / PDF / OCR toggle.
+The OCR view shows exactly what the extractor read, which is what search matches against.
+
+![The OCR view showing text extracted from an attached invoice](docs/images/screenshot-extraction.png)
+
 `/api/status` reports queue depth and whether poppler and the model server are
 reachable.
 
@@ -155,6 +173,7 @@ cannot run as same-origin content. Uploads of HTML and SVG are refused outright.
 | `src/lib/server/intake.ts`              | turning an uploaded file into a note        |
 | `src/routes/api/*`                      | JSON API                                    |
 | `src/lib/components/*`                  | the three-pane UI                           |
+| `scripts/demo.ts`                       | builds a demo database of invented notes    |
 | `docs/ocr-benchmark.md`                 | how the model was chosen, and the numbers   |
 
 `npm test` runs the tests, `npm run check` the type checker.
