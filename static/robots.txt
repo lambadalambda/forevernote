@@ -1,0 +1,4 @@
+# Forevernote has no authentication and holds personal documents.
+# It is not meant to be reachable by anything that reads this file.
+User-agent: *
+Disallow: /
